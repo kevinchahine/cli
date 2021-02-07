@@ -11,12 +11,12 @@
 #endif
 
 // This class is exported from the dll
-class CLI_API Ccli {
-public:
-	Ccli(void);
-	// TODO: add your methods here.
-};
-
-extern CLI_API int ncli;
-
-CLI_API int fncli(void);
+//class CLI_API Ccli {
+//public:
+//	Ccli(void);
+//	// TODO: add your methods here.
+//};
+//
+//extern CLI_API int ncli;
+//
+//CLI_API int fncli(void);
