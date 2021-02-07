@@ -6,8 +6,12 @@
 
 #include <iostream>
 #include <string>
+#include <thread>
+#include <chrono>
+#include <array>
 
 #include <boost/variant.hpp>
+#include <boost/multi_array.hpp>
 
 using namespace std;
 
@@ -41,19 +45,31 @@ int main()
 		<< cli::white << '='
 		<< '\n';
 
-	//cli::Matrix<cli::ColoredChar<uint8_t>> m;
-	//cli::Matrix m;
-	//m.print();
+	cli::Matrix m;// <cli::ColoredChar<uint8_t>> m;
+	cli::Matrix::extent_gen extents;
+	m.resize(extents[20][40]);
 
-	cli::Character ch;
-	ch = 'j';
+	const size_t N_ROWS = m.shape()[0];
+	const size_t N_COLS = m.shape()[1];
 
-	cout << ch << '\n';
+	for (size_t r = 0; r < N_ROWS; r++) {
+		m[r][0].character = cli::lines::vertical;
+		m[r][N_COLS - 1].character = cli::lines::vertical;
+	}
 
-	ch = ch + cli::lines::cross;
+	for (size_t c = 0; c < N_COLS; c++) {
+		m[0][c].character = cli::lines::horizontal;
+		m[N_ROWS - 1][c].character = cli::lines::horizontal;
+	}
 
-	cout << ch << '\n';
+	m[0][0] = cli::lines::down + cli::lines::right;
+	m[0][N_COLS - 1] = cli::lines::down + cli::lines::left;
+	m[N_ROWS - 1][0] = cli::lines::up + cli::lines::right;
+	m[N_ROWS - 1][N_COLS - 1] = cli::lines::up + cli::lines::left;
 
-	cin.get();
+	m.print();
+
+	this_thread::sleep_for(chrono::seconds(2));
+	//cin.get();
 	return 0;
 }

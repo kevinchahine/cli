@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Characters">
+      <UniqueIdentifier>{e5ecd77e-80a1-430d-a227-857812fbafd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Color">
+      <UniqueIdentifier>{b8e80d1e-7c8c-438f-8a7d-58a411932e45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Matrix">
+      <UniqueIdentifier>{9a9e5ca2-7da3-47c2-8f3d-81030314af50}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -27,26 +36,26 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="colored_char.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="iocolor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="block_char.h">
+      <Filter>Characters</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="block_char.h">
-      <Filter>Header Files</Filter>
+      <Filter>Characters</Filter>
     </ClInclude>
     <ClInclude Include="line_char.h">
-      <Filter>Header Files</Filter>
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="iocolor.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="colored_char.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Matrix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -59,26 +68,26 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="colored_char.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="iocolor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Characters</Filter>
     </ClCompile>
     <ClCompile Include="block_char.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Characters</Filter>
     </ClCompile>
     <ClCompile Include="line_char.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="color.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="iocolor.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="colored_char.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Matrix</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

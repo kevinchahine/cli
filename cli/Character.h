@@ -16,6 +16,16 @@ namespace cli
 	{
 	public:
 
+		Character() = default;
+		Character(uint8_t ch) : m_value(ch) {};
+		Character(const lines::line_char & lineChar) : m_value(lineChar) {};
+		Character(const blocks::block_char & blockChar) : m_value(blockChar) {};
+		Character(const Character &) = default;
+		Character(Character &&) noexcept = default;
+		virtual ~Character() noexcept = default;
+		Character & operator=(const Character &) = default;
+		Character & operator=(Character &&) noexcept = default;
+
 		Character & operator=(uint8_t ch);
 		Character & operator=(const lines::line_char & lineChar);
 		Character & operator=(const blocks::block_char & blockChar);
@@ -35,6 +45,8 @@ namespace cli
 		Character operator-(uint8_t ch) const;
 		Character operator-(const lines::line_char & lineChar) const;
 		Character operator-(const blocks::block_char & blockChar) const;
+
+		bool operator==(const Character & rhs) const { return false; }// fix this }
 
 		CLI_API friend std::ostream & operator<<(std::ostream & os, const cli::Character & rhs);
 

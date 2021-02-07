@@ -8,7 +8,7 @@
 namespace cli
 {
 	template<typename CHAR_T = uint8_t>
-	class CLI_API ColoredChar
+	class ColoredChar
 	{
 	public:
 		ColoredChar() = default;
@@ -21,16 +21,18 @@ namespace cli
 		ColoredChar & operator=(const ColoredChar &) = default;
 		ColoredChar & operator=(ColoredChar &&) noexcept = default;
 
-	//private:
+		ColoredChar & operator=(const CHAR_T & character) { this->character = character; return *this; }
+
+		bool operator==(const ColoredChar & cc) const { return this->character == cc.character; }
+
+		friend std::ostream & operator<<(std::ostream & os, const ColoredChar & cc) {
+			os << cc.color << cc.character;
+
+			return os;
+		}
+
 		Color color;
 
 		CHAR_T character = ' ';
 	};
-}
-
-inline std::ostream & operator<<(std::iostream & os, const cli::ColoredChar<uint8_t> & cc)
-{
-	os << cc.color << cc.character;
-
-	return os;
 }

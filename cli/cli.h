@@ -10,6 +10,8 @@
 #define CLI_API __declspec(dllimport)
 #endif
 
+#pragma warning (disable: 4251)
+
 // This class is exported from the dll
 //class CLI_API Ccli {
 //public:
