@@ -15,84 +15,95 @@
 
 namespace cli
 {
-	
-	static WORD currColor = Color::calcColor(Color::WHITE, Color::BLACK);
-	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	static CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
-	static std::stack<std::ios_base::fmtflags> flags;
-	static std::stack<WORD> colorStack;
-
-	// Stream Manipulator class
-	// Purpose: Sets color of the next characters printed to console
-	// Ex: 
-	//		using namespace cli;
-	//		
-	//		cout << setcolor(color::GREEN) << "Hello";
-	class setcolor
+	namespace color
 	{
-	public:
-		setcolor(WORD color) :
-			newColor(color) {}
+		static WORD currColor = Color::calcColor(Color::WHITE, Color::BLACK);
+		static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		static CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
+		static std::stack<std::ios_base::fmtflags> flags;
+		static std::stack<WORD> colorStack;
 
-		setcolor(Color::type foreground, Color::type background) :
-			newColor(Color::calcColor(foreground, background)) {}
-
-		friend std::ostream& operator<<(std::ostream& os, const setcolor& rhs)
+		// Stream Manipulator class
+		// Purpose: Sets color of the next characters printed to console
+		// Ex: 
+		//		using namespace cli;
+		//		
+		//		cout << setcolor(color::GREEN) << "Hello";
+		class setcolor
 		{
-			if (currColor != rhs.newColor) {
-				SetConsoleTextAttribute(h, rhs.newColor);
-				currColor = rhs.newColor;
+		public:
+			setcolor(WORD color) :
+				newColor(color) {}
+
+			setcolor(Color::type foreground, Color::type background) :
+				newColor(Color::calcColor(foreground, background)) {}
+
+			setcolor(const Color & foreground, const Color & background) :
+				newColor(Color::calcColor(foreground.getcolor(), background.getcolor())) {}
+
+			friend std::ostream& operator<<(std::ostream& os, const setcolor& rhs)
+			{
+				if (currColor != rhs.newColor) {
+					SetConsoleTextAttribute(h, rhs.newColor);
+					currColor = rhs.newColor;
+				}
+
+				return os;
 			}
 
-			return os;
-		}
+		protected:
+			WORD newColor;
+		};
 
-	protected:
-		WORD newColor;
-	};
-
-	// Stream Manipulator class
-	// Purpose: Sets color of the next characters printed to console
-	class setfg : public setcolor
-	{
-	public:
-		setfg(Color::type fgColor) : 
-			setcolor(fgColor, Color::calcBackground(static_cast<Color::type>(currColor))) {}
-	};
-
-	class setbg : public setcolor
-	{
-	public:
-		setbg(Color::type bgColor) : 
-			setcolor(Color::calcForeground(static_cast<Color::type>(currColor)), bgColor) {}
-	};
-
-	class push
-	{
-	public:
-
-		friend std::ostream& operator<<(std::ostream& os, const push& push)
+		// Stream Manipulator class
+		// Purpose: Sets color of the next characters printed to console
+		class setfg : public setcolor
 		{
-			flags.push(os.flags());
-			colorStack.push(currColor);
-			return os;
-		}
-	};
+		public:
+			setfg(Color::type fgColor) :
+				setcolor(fgColor, Color::calcBackground(static_cast<Color::type>(currColor))) {}
 
-	class pop
-	{
-	public:
+			setfg(const Color & fgColor) :
+				setcolor(fgColor, Color::calcBackground(static_cast<Color::type>(currColor))) {}
+		};
 
-		friend std::ostream& operator<<(std::ostream& os, const pop& pop)
+		class setbg : public setcolor
 		{
-			os << setcolor(colorStack.top());
-			colorStack.pop();
-			os.flags(flags.top());
-			flags.pop();
-			return os;
-		}
-	};
+		public:
+			setbg(Color::type bgColor) :
+				setcolor(Color::calcForeground(static_cast<Color::type>(currColor)), bgColor) {}
 
+			setbg(const Color & bgColor) :
+				setcolor(Color::calcForeground(static_cast<Color::type>(currColor)), bgColor) {}
+		};
+
+		class push
+		{
+		public:
+
+			friend std::ostream& operator<<(std::ostream& os, const push& push)
+			{
+				flags.push(os.flags());
+				colorStack.push(currColor);
+				return os;
+			}
+		};
+
+		class pop
+		{
+		public:
+
+			friend std::ostream& operator<<(std::ostream& os, const pop& pop)
+			{
+				os << setcolor(colorStack.top());
+				colorStack.pop();
+				os.flags(flags.top());
+				flags.pop();
+				return os;
+			}
+		};
+
+	} // namespace color
 } // namespace cli
 
-CLI_API std::ostream& operator<<(std::ostream& os, const cli::Color& rhs);
+CLI_API std::ostream& operator<<(std::ostream& os, const cli::color::Color& rhs);

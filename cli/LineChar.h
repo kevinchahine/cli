@@ -13,59 +13,59 @@ namespace cli
 		// Externs
 		CLI_API extern const unsigned char LINES[];
 
-		class line_char
+		class LineChar
 		{
 		public:
-			line_char() = default;
-			line_char(uint8_t value) : m_value(value) {}
-			line_char(const line_char &) = default;
-			line_char(line_char &&) noexcept = default;
-			virtual ~line_char() noexcept = default;
-			line_char & operator=(const line_char &) = default;
-			line_char & operator=(line_char &&) noexcept = default;
+			LineChar() = default;
+			LineChar(uint8_t value) : m_value(value) {}
+			LineChar(const LineChar &) = default;
+			LineChar(LineChar &&) noexcept = default;
+			virtual ~LineChar() noexcept = default;
+			LineChar & operator=(const LineChar &) = default;
+			LineChar & operator=(LineChar &&) noexcept = default;
 
 			// Adds a line component to the character
 			// ex: 
-			// using namespace utf;
-			// line_char l;
+			// using namespace cli;
+			// LineChar l;
 			// l = lines::right + lines::left;
 			// cout << l;		// prints horizontal line
-			line_char operator+(const line_char & other) const {
+			LineChar operator+(const LineChar & other) const {
 				return this->m_value | other.m_value;
 			}
 
 			// Adds a line component to the character
 			// ex: 
-			// using namespace utf;
-			// line_char l = lines::right;
+			// using namespace cli;
+			// LineChar l = lines::right;
 			// l += lines::left;
 			// cout << l;		// prints horizontal line
-			line_char operator+=(const line_char & other) {
+			LineChar operator+=(const LineChar & other) {
 				this->m_value = this->m_value | other.m_value;
 				return this->m_value;
 			}
 
 			// Removes a line component from the character
 			// ex: 
-			// using namespace utf;
-			// line_char l = lines::cross - lines::up;
+			// using namespace cli;
+			// LineChar l = lines::cross - lines::up;
 			// cout << l;		// prints T-shaped line
-			line_char operator-(const line_char & other) const {
+			LineChar operator-(const LineChar & other) const {
 				return this->m_value & ~other.m_value;
 			}
 
 			// Removes a line component from the character
 			// ex: 
-			// using namespace utf;
-			// line_char l = lines::cross;
+			// using namespace cli;
+			// LineChar l = lines::cross;
 			// l -= lines::up;
 			// cout << l;		// prints T-shaped line
-			line_char operator-=(const line_char & other) {
+			LineChar operator-=(const LineChar & other) {
 				this->m_value = this->m_value & ~other.m_value;
 				return this->m_value;
 			}
 
-			friend std::ostream & operator<<(std::ostream & os, const line_char & lhs) {
+			friend std::ostream & operator<<(std::ostream & os, const LineChar & lhs) {
 				os << LINES[lhs.m_value];
 
 				return os;
@@ -74,7 +74,7 @@ namespace cli
 			bool isValid() const { return LINES[m_value] != '#'; }
 			bool isInValid() const { return !isValid(); }
 
-			// Returns bitwise value of line_char. 
+			// Returns bitwise value of LineChar. 
 			// Not the displayable character itself.
 			uint8_t & value() { return m_value; }
 			const uint8_t & value() const { return m_value; }
@@ -93,7 +93,7 @@ namespace cli
 			// Ex: 
 			//	uint8_t m_value = 0b0000'0011;		// 3 - left, right (horizontal line)
 			//	cout << m_value;					// No - does not print horizontal line
-			//	cout << utf::LINES[m_value];		// Yes - prints horizontal line char
+			//	cout << cli::LINES[m_value];		// Yes - prints horizontal line char
 			// 
 			// 0 (LSB)	RIGHT
 			// 1		LEFT
@@ -107,19 +107,19 @@ namespace cli
 		};
 
 		// --- pre-defined constants ---
-		const line_char up(0b0000'1000);
-		const line_char double_up(0b1000'1000);
-		const line_char down(0b0000'0100);
-		const line_char double_down(0b0100'0100);
-		const line_char left(0b0000'0010);
-		const line_char double_left(0b0010'0010);
-		const line_char right(0b0000'0001);
-		const line_char double_right(0b0001'0001);
-		const line_char horizontal(0b0000'0011);
-		const line_char double_horizontal(0b0011'0011);
-		const line_char vertical(0b0000'1100);
-		const line_char double_vertical(0b1100'1100);
-		const line_char cross(0b0000'1111);
-		const line_char double_cross(0b1111'1111);
+		const LineChar up(0b0000'1000);
+		const LineChar double_up(0b1000'1000);
+		const LineChar down(0b0000'0100);
+		const LineChar double_down(0b0100'0100);
+		const LineChar left(0b0000'0010);
+		const LineChar double_left(0b0010'0010);
+		const LineChar right(0b0000'0001);
+		const LineChar double_right(0b0001'0001);
+		const LineChar horizontal(0b0000'0011);
+		const LineChar double_horizontal(0b0011'0011);
+		const LineChar vertical(0b0000'1100);
+		const LineChar double_vertical(0b1100'1100);
+		const LineChar cross(0b0000'1111);
+		const LineChar double_cross(0b1111'1111);
 	}
 }

@@ -11,18 +11,18 @@ namespace cli
 		// Externs
 		extern const unsigned char BLOCK_CHARS[];
 
-		class block_char
+		class CLI_API BlockChar
 		{
 		public:
-			block_char() = default;
-			block_char(uint8_t value) : m_value(value) {}
-			block_char(const block_char &) = default;
-			block_char(block_char &&) noexcept = default;
-			virtual ~block_char() noexcept = default;
-			block_char & operator=(const block_char &) = default;
-			block_char & operator=(block_char &&) noexcept = default;
+			BlockChar() = default;
+			BlockChar(uint8_t value) : m_value(value) {}
+			BlockChar(const BlockChar &) = default;
+			BlockChar(BlockChar &&) noexcept = default;
+			virtual ~BlockChar() noexcept = default;
+			BlockChar & operator=(const BlockChar &) = default;
+			BlockChar & operator=(BlockChar &&) noexcept = default;
 
-			friend std::ostream & operator<<(std::ostream & os, const block_char & lhs) {
+			friend std::ostream & operator<<(std::ostream & os, const BlockChar & lhs) {
 				os << BLOCK_CHARS[lhs.m_value];
 
 				return os;
@@ -52,11 +52,11 @@ namespace cli
 		};
 
 		// --- pre-defined constants ---
-		const block_char empty(0);
-		const block_char top(1);
-		const block_char bottom(2);
-		const block_char left(3);
-		const block_char right(4);
-		const block_char full(5);
+		const BlockChar empty(0);
+		const BlockChar top(1);
+		const BlockChar bottom(2);
+		const BlockChar left(3);
+		const BlockChar right(4);
+		const BlockChar full(5);
 	}
 }

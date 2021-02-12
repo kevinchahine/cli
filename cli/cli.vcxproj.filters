@@ -22,6 +22,12 @@
     <Filter Include="Matrix">
       <UniqueIdentifier>{9a9e5ca2-7da3-47c2-8f3d-81030314af50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shapes">
+      <UniqueIdentifier>{4df625be-0962-4457-949e-3956ade151eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Boards">
+      <UniqueIdentifier>{95435bb0-dfe0-41af-a1f4-bfbc4c7162a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
@@ -36,26 +42,38 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="block_char.h">
-      <Filter>Characters</Filter>
-    </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="line_char.h">
-      <Filter>Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="color.h">
-      <Filter>Color</Filter>
     </ClInclude>
     <ClInclude Include="iocolor.h">
       <Filter>Color</Filter>
     </ClInclude>
-    <ClInclude Include="colored_char.h">
-      <Filter>Characters</Filter>
-    </ClInclude>
     <ClInclude Include="Matrix.h">
       <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="Size.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockChar.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="LineChar.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="ColoredChar.h">
+      <Filter>Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Color</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawFunctions.h">
+      <Filter>Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckerBoard.h">
+      <Filter>Boards</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,23 +89,35 @@
     <ClCompile Include="Character.cpp">
       <Filter>Characters</Filter>
     </ClCompile>
-    <ClCompile Include="block_char.cpp">
-      <Filter>Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="line_char.cpp">
-      <Filter>Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="color.cpp">
-      <Filter>Color</Filter>
-    </ClCompile>
     <ClCompile Include="iocolor.cpp">
       <Filter>Color</Filter>
     </ClCompile>
-    <ClCompile Include="colored_char.cpp">
-      <Filter>Characters</Filter>
-    </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Size.cpp">
+      <Filter>Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockChar.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="LineChar.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="ColoredChar.cpp">
+      <Filter>Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Color</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawFunctions.cpp">
+      <Filter>Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckerBoard.cpp">
+      <Filter>Boards</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

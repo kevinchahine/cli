@@ -8,9 +8,9 @@ namespace cli
 
 } // namespace cli
 
-CLI_API std::ostream & operator<<(std::ostream & os, const cli::Color & rhs)
+CLI_API std::ostream & operator<<(std::ostream & os, const cli::color::Color & rhs)
 {
-	os << cli::setcolor(rhs.getcolor());
+	os << cli::color::setcolor(rhs.getcolor());
 
 	return os;
 }

@@ -3,8 +3,8 @@
 #include "pch.h"
 #include "cli.h"
 #include "color.h"
-#include "line_char.h"
-#include "block_char.h"
+#include "LineChar.h"
+#include "BlockChar.h"
 
 #include <boost/variant.hpp>	// Break this down into only the headers that we need
 
@@ -18,8 +18,8 @@ namespace cli
 
 		Character() = default;
 		Character(uint8_t ch) : m_value(ch) {};
-		Character(const lines::line_char & lineChar) : m_value(lineChar) {};
-		Character(const blocks::block_char & blockChar) : m_value(blockChar) {};
+		Character(const lines::LineChar & lineChar) : m_value(lineChar) {};
+		Character(const blocks::BlockChar & blockChar) : m_value(blockChar) {};
 		Character(const Character &) = default;
 		Character(Character &&) noexcept = default;
 		virtual ~Character() noexcept = default;
@@ -27,31 +27,31 @@ namespace cli
 		Character & operator=(Character &&) noexcept = default;
 
 		Character & operator=(uint8_t ch);
-		Character & operator=(const lines::line_char & lineChar);
-		Character & operator=(const blocks::block_char & blockChar);
+		Character & operator=(const lines::LineChar & lineChar);
+		Character & operator=(const blocks::BlockChar & blockChar);
 		
 		// ex:
-		//	Character a = cli::line_char::horizontal;
-		//	Character b = cli::line_char::vertical;
+		//	Character a = cli::LineChar::horizontal;
+		//	Character b = cli::LineChar::vertical;
 		//	Character c = a + b;
 		Character operator+(uint8_t ch) const;
-		Character operator+(const lines::line_char & lineChar) const;
-		Character operator+(const blocks::block_char & blockChar) const;
+		Character operator+(const lines::LineChar & lineChar) const;
+		Character operator+(const blocks::BlockChar & blockChar) const;
 		
 		Character & operator+=(uint8_t ch);
-		Character & operator+=(const lines::line_char & lineChar);
-		Character & operator+=(const blocks::block_char & blockChar);
+		Character & operator+=(const lines::LineChar & lineChar);
+		Character & operator+=(const blocks::BlockChar & blockChar);
 
 		Character operator-(uint8_t ch) const;
-		Character operator-(const lines::line_char & lineChar) const;
-		Character operator-(const blocks::block_char & blockChar) const;
+		Character operator-(const lines::LineChar & lineChar) const;
+		Character operator-(const blocks::BlockChar & blockChar) const;
 
 		bool operator==(const Character & rhs) const { return false; }// fix this }
 
 		CLI_API friend std::ostream & operator<<(std::ostream & os, const cli::Character & rhs);
 
 	protected:
-		boost::variant<uint8_t, lines::line_char, blocks::block_char> m_value;
+		boost::variant<uint8_t, lines::LineChar, blocks::BlockChar> m_value;
 	};
 
 	CLI_API std::ostream & operator<<(std::ostream & os, const cli::Character & rhs);

@@ -12,14 +12,14 @@ namespace cli
 		return *this;
 	}
 	
-	Character & Character::operator=(const lines::line_char & lineChar)
+	Character & Character::operator=(const lines::LineChar & lineChar)
 	{
 		m_value = lineChar;
 	
 		return *this;
 	}
 	
-	Character & Character::operator=(const blocks::block_char & blockChar)
+	Character & Character::operator=(const blocks::BlockChar & blockChar)
 	{
 		m_value = blockChar;
 	
@@ -42,11 +42,11 @@ namespace cli
 		return ret;
 	}
 	
-	Character Character::operator+(const lines::line_char & lineChar) const
+	Character Character::operator+(const lines::LineChar & lineChar) const
 	{
 		Character ret;
 
-		if (const lines::line_char * val = boost::get<lines::line_char>(&m_value)) {
+		if (const lines::LineChar * val = boost::get<lines::LineChar>(&m_value)) {
 			ret = *val + lineChar;
 		}
 		else {
@@ -56,11 +56,11 @@ namespace cli
 		return ret;
 	}
 	
-	Character Character::operator+(const blocks::block_char & blockChar) const
+	Character Character::operator+(const blocks::BlockChar & blockChar) const
 	{
 		Character ret;
 
-		if (const blocks::block_char * val = boost::get<blocks::block_char>(&m_value)) {
+		if (const blocks::BlockChar * val = boost::get<blocks::BlockChar>(&m_value)) {
 			ret = blockChar;
 		}
 		else {
@@ -76,31 +76,31 @@ namespace cli
 			*val += ch;
 		}
 		else {
-			*val = ch;
+			m_value = ch;
 		}
 
 		return *this;
 	}
 
-	Character & Character::operator+=(const lines::line_char & lineChar)
+	Character & Character::operator+=(const lines::LineChar & lineChar)
 	{
-		if (lines::line_char * val = boost::get<lines::line_char>(&m_value)) {
+		if (lines::LineChar * val = boost::get<lines::LineChar>(&m_value)) {
 			*val += lineChar;
 		}
 		else {
-			*val = lineChar;
+			m_value = lineChar;
 		}
 
 		return *this;
 	}
 
-	Character & Character::operator+=(const blocks::block_char & blockChar)
+	Character & Character::operator+=(const blocks::BlockChar & blockChar)
 	{
-		if (blocks::block_char * val = boost::get<blocks::block_char>(&m_value)) {
+		if (blocks::BlockChar * val = boost::get<blocks::BlockChar>(&m_value)) {
 			*val = blockChar;
 		}
 		else {
-			*val = blockChar;
+			m_value = blockChar;
 		}
 
 		return *this;
@@ -122,11 +122,11 @@ namespace cli
 		return ret;
 	}
 	
-	Character Character::operator-(const lines::line_char & lineChar) const
+	Character Character::operator-(const lines::LineChar & lineChar) const
 	{
 		Character ret;
 
-		if (const lines::line_char * val = boost::get<lines::line_char>(&m_value)) {
+		if (const lines::LineChar * val = boost::get<lines::LineChar>(&m_value)) {
 			ret = *val - lineChar;
 		}
 		else {
@@ -136,11 +136,11 @@ namespace cli
 		return ret;
 	}
 	
-	Character Character::operator-(const blocks::block_char & blockChar) const
+	Character Character::operator-(const blocks::BlockChar & blockChar) const
 	{
 		Character ret;
 
-		if (const blocks::block_char * val = boost::get<blocks::block_char>(&m_value)) {
+		if (const blocks::BlockChar * val = boost::get<blocks::BlockChar>(&m_value)) {
 			ret = blockChar;
 		}
 		else {

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "block_char.h"
+#include "BlockChar.h"
 
 namespace cli
 {
