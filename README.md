@@ -1,0 +1,2 @@
+# cli
+Library utility used to store and print graphic text based data involving special unicode characters, text based charts and graphs in color to a console/terminal. Designed with developer ease of use in mind. Helps make it easier to create vibrant displays on a console/terminal in a very object oriented fasion. Create Checkerboard layouts, charts, tables and ASCII art with ease all without the need for a resource intensive GUI.
